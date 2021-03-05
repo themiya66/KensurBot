@@ -97,7 +97,7 @@ OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY") or None
 ALIVE_NAME = str(os.environ.get("ALIVE_NAME")) or None
 
 # Default .alive logo
-ALIVE_LOGO = str(os.environ.get("ALIVE_LOGO") or "https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/Fizilion.png")
+ALIVE_LOGO = str(os.environ.get("ALIVE_LOGO") or "https://github.com/themiya66/KensurBot/blob/sql-extended/resources/telegram-flames-draft.jpg")
 # remove.bg API key
 REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY") or None
 
