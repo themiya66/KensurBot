@@ -127,12 +127,31 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern=r"^\.alive$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
-    await alive.edit(
-        "**KensurBot v1.0 is up and running!**\n\n"
-        f"**Telethon:** {version.__version__}\n"
-        f"**Python:** {python_version()}\n"
-        f"**User:** {DEFAULTUSER}"
+  uptime = await get_readable_time((time.time() - StartTime))
+    output = (
+        "`KenSur Bot is UP!`\n"
+        f"`Hi {DEFAULTUSER}`\n"
+        f"• `Python`         : `v{python_version()} `\n"
+        f"• `Telethon`       : `v{version.__version__} `\n"
+        f"• `Branch`         : `{repo.active_branch.name} `\n"
+        f"• `Loaded modules` : `{len(modules)} `\n"
+        f"• `Release`        : `{USERBOT_VERSION} `\n"
+        f"• `Bot Uptime`     : `{uptime} `\n"
     )
+    
+     if ALIVE_LOGO:
+        try:
+            logo = ALIVE_LOGO
+            await bot.send_file(alive.chat_id, logo, caption=output)
+            await alive.delete()
+        except BaseException:
+            await alive.edit(
+                output + "\n\n *`The provided logo is invalid."
+                "\nMake sure the link is directed to the logo picture`"
+            )
+     
+        else:
+             await alive.edit(output)
 
 
 @register(outgoing=True, pattern=r"^\.aliveu")
